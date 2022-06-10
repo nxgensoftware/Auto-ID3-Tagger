@@ -8,7 +8,7 @@ import eyed3.plugins.art
 
 from shazamio import Shazam, Serialize
 
-MUSIC_FOLDER = "C:/Users/Aeilko/Desktop/mtmp"
+MUSIC_FOLDER = ""
 
 async def main():
     shazam = Shazam()
