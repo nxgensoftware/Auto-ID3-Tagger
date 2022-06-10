@@ -1,0 +1,8 @@
+# Test files
+/music
+
+# Python
+/venv
+
+# JetBrains
+/.idea
