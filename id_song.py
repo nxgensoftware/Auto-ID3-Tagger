@@ -45,10 +45,16 @@ async def main():
                     if md.title == "Released":
                         tags['year'] = md.text
 
+        print("Shazam: " + tags['artist'] + " - " + tags['title'] + " (" + tags['album'] + ")")
+
         # Reset current tags
         id3 = eyed3.load(path)
-        id3.tag.clear()
-        id3.tag.save()
+        if id3.tag:
+            id3.tag.clear()
+            id3.tag.save()
+        else:
+            id3.initTag()
+            id3.tag.save()
 
         # Save new tags
         id3 = eyed3.load(path)
@@ -72,6 +78,7 @@ async def main():
 
         # Save the new tags
         id3.tag.save(version=(2, 3, 0))
+
         print("Saved new tags")
         # break
 
