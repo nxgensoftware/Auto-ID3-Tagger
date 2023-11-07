@@ -1,6 +1,5 @@
 import asyncio
 import os
-import pprint
 import urllib.request
 
 import eyed3
@@ -9,6 +8,7 @@ import eyed3.plugins.art
 from shazamio import Shazam, Serialize
 
 MUSIC_FOLDER = ""
+
 
 async def main():
     shazam = Shazam()
@@ -37,7 +37,7 @@ async def main():
 
         cover_art = out['track']['images']['coverarthq'].replace("400x400", "1000x1000")
 
-        for section in data._sections:
+        for section in data.sections:
             if section.type == "SONG":
                 for md in section.metadata:
                     if md.title == "Album":
@@ -58,7 +58,6 @@ async def main():
 
         # Save new tags
         id3 = eyed3.load(path)
-        # pprint.pprint(tags)
         id3.tag.album = tags['album']
         id3.tag.artist = tags['artist']
         id3.tag.album_artist = tags['artist']
@@ -80,7 +79,6 @@ async def main():
         id3.tag.save(version=(2, 3, 0))
 
         print("Saved new tags")
-        # break
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())

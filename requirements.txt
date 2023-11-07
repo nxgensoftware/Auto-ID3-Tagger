@@ -1,2 +1,3 @@
-eyed3
+eyeD3
+python-magic-bin
 shazamio
